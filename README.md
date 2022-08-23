@@ -26,13 +26,21 @@ Implement manual testing and document the procedures and results.
 
 # Technologies Used
 
-- Modules
-- Languages
-- Libraries
-- Frameworks
-- Platforms
-- Services 
-- Resources
+## Modules
+
+## Languages
+- Python - The base language of the Django REST Framework
+
+## Libraries
+
+## Frameworks
+- Django REST Framework
+
+## Platforms
+
+## Services 
+
+## Resources
 
 ***
 
