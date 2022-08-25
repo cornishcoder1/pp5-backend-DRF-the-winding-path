@@ -36,6 +36,9 @@ class GallerySerializer(serializers.ModelSerializer):
         fields = [
             'id',
             'owner',
+            'is_owner',
+            'profile_id',
+            'profile_image',
             'created_on',
             'updated_on',
             'category',
