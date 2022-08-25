@@ -151,7 +151,7 @@ LOCATION_FIELD = {
 
     # Google
     'provider.google.api': '//maps.google.com/maps/api/js?sensor=false',
-    'provider.google.api_key': 'AIzaSyAgolQvUHyUi43NiU1_gJBFwCs1HUhaMpw',
+    'provider.google.api_key': 'AIzaSyA9VREx8HIPRmVBcb33oGz0e1V5Jj3SP6g',
     'provider.google.api_libraries': '',
     'provider.google.map.type': 'ROADMAP',
 }
