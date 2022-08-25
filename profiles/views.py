@@ -2,9 +2,9 @@ from django.http import Http404
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from drf_api.permissions import IsOwnerOrReadOnly
 from .models import Profile
 from .serializers import ProfileSerializer
-from drf_api.permissions import IsOwnerOrReadOnly
 
 
 class ProfileList(APIView):
@@ -12,14 +12,16 @@ class ProfileList(APIView):
     def get(self, request):
         """get method to return all Profiles"""
         profiles = Profile.objects.all()
-        serializer = ProfileSerializer(profiles, many=True, context={'request': request})
+        serializer = ProfileSerializer(profiles, many=True,
+        context={'request': request})
         return Response(serializer.data)
 
 
 class ProfileDetail(APIView):
+    """Profile Detail view"""
     serializer_class = ProfileSerializer
     permission_classes = [IsOwnerOrReadOnly]
-    """Profile Detail view"""
+
     def get_object(self, pk):
         """Method to handle requests made for a profile which does not exist"""
         try:
@@ -43,6 +45,3 @@ class ProfileDetail(APIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-

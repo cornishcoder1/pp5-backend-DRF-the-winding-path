@@ -5,7 +5,7 @@ from location_field.models.plain import PlainLocationField
 
 
 class Profile(models.Model):
-    """Model for Profile class"""
+    """Model for Profile"""
     owner = models.OneToOneField(User, on_delete=models.CASCADE)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
