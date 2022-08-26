@@ -58,7 +58,9 @@ class GalleryPostDetailViewTests(APITestCase):
     def test_user_can_update_own_post(self):
         """Test that a user can update their own post"""
         self.client.login(username='john', password='pass')
-        response = self.client.put('/gallery-posts/1/', {'title': 'a new title'})
+        response = self.client.put('/gallery-posts/1/', {
+            'title': 'a new title'
+        })
         gallery_post = Gallery.objects.filter(pk=1).first()
         self.assertEqual(gallery_post.title, 'a new title')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -66,8 +68,8 @@ class GalleryPostDetailViewTests(APITestCase):
     def test_user_cant_update_another_users_post(self):
         """Test that a user can't update another user's post"""
         self.client.login(username='john', password='pass')
-        response = self.client.put('/gallery-posts/2/',
-            {'title': 'a new title'}
-        )
+        response = self.client.put('/gallery-posts/2/', {
+            'title': 'a new title'
+        })
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 

@@ -17,3 +17,11 @@ I have performed the following unit tests using the Red Green Refactor principle
 Result:
 
 ![Unit Tests results](static/screenshots_tests/gallery_list_view_unit_test_results.png)
+
+## Gallery Post Detail View
+
+![Unit Tests for Gallery Post Detail View](static/screenshots_tests/gallery_post_detail_view_unit_test.png)
+
+Result:
+
+![Unit Tests results](static/screenshots_tests/gallery_post_detail_view_unit_test_results.png)
