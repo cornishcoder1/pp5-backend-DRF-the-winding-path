@@ -23,7 +23,7 @@ class GalleryPostsList(APIView):
         return Response(serializer.data)
 
     def post(self, request):
-        """post method to create a Gallery Posts"""
+        """post method to create a Gallery Post"""
         serializer = GallerySerializer(
             data=request.data, context={'request': request}
         )
