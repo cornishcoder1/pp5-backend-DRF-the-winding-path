@@ -22,7 +22,8 @@ class WalkPostsListViewTests(APITestCase):
         """Test that a logged in user can create a post"""
         #fail
         self.client.login(username='paul', password='pass')
-        response = self.client.post('/walk-posts/', {'title': 'a title'})
+        response = self.client.post('/walk-posts/', 
+        {'length': '1 mile', 'duration': '1 hour', 'headline': 'test post', 'title': 'test title'})
         count = Post.objects.count()
         self.assertEqual(count, 1)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -39,10 +40,12 @@ class WalkPostDetailViewTests(APITestCase):
         paul = User.objects.create_user(username='paul', password='pass')
         jane = User.objects.create_user(username='jane', password='pass')
         Post.objects.create(
-            owner=paul, title='a title', content='pauls content'
+            owner=paul, title='a title', content='pauls content',
+            length='1 mile', duration='1 hour', headline='test headline',
         )
         Post.objects.create(
-            owner=jane, title='another title', content='janes content'
+            owner=jane, title='another title', content='janes content',
+            length='1 mile', duration='1 hour', headline='test headline',
         )
 
     def test_can_retrieve_post_using_valid_id(self):
@@ -57,21 +60,21 @@ class WalkPostDetailViewTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_user_can_update_own_post(self):
-        #fail
+        # Fail
         """Test that a user can update their own post"""
         self.client.login(username='paul', password='pass')
         response = self.client.put('/walk-posts/1/', {
-            'title': 'a new title'
+            'title': 'a title', 'length': '2 miles',
+            'duration': '1 hour', 'headline': 'test headline',
         })
         walk_post = Post.objects.filter(pk=1).first()
-        self.assertEqual(walk_post.title, 'a new title')
+        print(response.data)
+        self.assertEqual(walk_post.length, '2 miles')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_user_cant_update_another_users_post(self):
-        #fail
         """Test that a user can't update another user's post"""
         self.client.login(username='paul', password='pass')
-        response = self.client.put('/gallery-posts/2/', {
-            'title': 'a new title'
-        })
+        response = self.client.put('/walk-posts/2/', {
+            'title': 'a new title', 'owner': 'paul'})
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
