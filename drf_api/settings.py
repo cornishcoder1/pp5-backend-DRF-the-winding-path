@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'gallery',
     'posts',
     'comments_gallery',
+    'comments_walk',
 ]
 
 MIDDLEWARE = [
