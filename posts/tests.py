@@ -20,10 +20,10 @@ class WalkPostsListViewTests(APITestCase):
 
     def test_logged_in_user_can_create_post(self):
         """Test that a logged in user can create a post"""
-        #fail
         self.client.login(username='paul', password='pass')
-        response = self.client.post('/walk-posts/', 
-        {'length': '1 mile', 'duration': '1 hour', 'headline': 'test post', 'title': 'test title'})
+        response = self.client.post('/walk-posts/',
+        {'length': '1 mile', 'duration': '1 hour', 'headline': 'test post',
+        'title': 'test title'})
         count = Post.objects.count()
         self.assertEqual(count, 1)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -60,7 +60,6 @@ class WalkPostDetailViewTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_user_can_update_own_post(self):
-        # Fail
         """Test that a user can update their own post"""
         self.client.login(username='paul', password='pass')
         response = self.client.put('/walk-posts/1/', {
