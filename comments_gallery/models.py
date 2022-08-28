@@ -14,6 +14,7 @@ class GalleryComment(models.Model):
     content = models.TextField()
 
     class Meta:
+        """Order by most recent first"""
         ordering = ['-created_on']
 
     def __str__(self):

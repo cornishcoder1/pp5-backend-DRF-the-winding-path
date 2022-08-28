@@ -16,16 +16,20 @@ class GalleryCommentSerializer(serializers.ModelSerializer):
     updated_on = serializers.SerializerMethodField()
 
     def get_is_owner(self, obj):
+        """Method to check if request.user is the same as owner"""
         request = self.context['request']
         return request.user == obj.owner
 
-    def get_created_at(self, obj):
-        return naturaltime(obj.created_at)
+    def get_created_on(self, obj):
+        """Method to display when comment was posted"""
+        return naturaltime(obj.created_on)
 
-    def get_updated_at(self, obj):
-        return naturaltime(obj.updated_at)
+    def get_updated_on(self, obj):
+        """Method to display when comment was updated"""
+        return naturaltime(obj.updated_on)
 
     class Meta:
+        """Meta class to to specify model and fields"""
         model = GalleryComment
         fields = [
             'id', 'owner', 'is_owner', 'profile_id', 'profile_image',
@@ -33,7 +37,7 @@ class GalleryCommentSerializer(serializers.ModelSerializer):
         ]
 
 
-class CommentDetailSerializer(GalleryCommentSerializer):
+class GalleryCommentDetailSerializer(GalleryCommentSerializer):
     """
     Serializer for the Gallery Comment model used in Detail view
     """
