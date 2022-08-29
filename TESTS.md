@@ -25,3 +25,19 @@ Result:
 Result:
 
 ![Unit Tests results](static/screenshots_tests/gallery_post_detail_view_unit_test_results.png)
+
+## Walk Post List View
+
+![Unit Tests for Walk Post List View](static/screenshots_tests/walk_list_view_unit_test.png)
+
+Result:
+
+![Unit Tests results](static/screenshots_tests/walk_list_view_unit_test_results.png)
+
+## Walk Post Detail View
+
+![Unit Tests for Walk Post Detail View](static/screenshots_tests/walk_post_detail_view_unit_test.png)
+
+Result:
+
+![Unit Tests results](static/screenshots_tests/walk_post_detail_view_unit_test_results.png)
