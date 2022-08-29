@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'comments_gallery',
     'comments_walk',
     'likes',
+    'save',
 ]
 
 MIDDLEWARE = [
