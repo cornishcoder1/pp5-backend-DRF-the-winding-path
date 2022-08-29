@@ -8,6 +8,10 @@ class ProfileSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
     following_id = serializers.SerializerMethodField()
+    walk_posts_count = serializers.ReadOnlyField()
+    gallery_posts_count = serializers.ReadOnlyField()
+    followers_count = serializers.ReadOnlyField()
+    following_count = serializers.ReadOnlyField()
 
     def get_is_owner(self, obj):
         """Method to check if request.user is the same as owner"""
@@ -31,4 +35,6 @@ class ProfileSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'owner', 'created_on', 'updated_on', 'name', 'city',
             'location', 'bio', 'image', 'is_owner', 'following_id',
+            'walk_posts_count', 'gallery_posts_count', 'followers_count',
+            'following_count',
         ]
