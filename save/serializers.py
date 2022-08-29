@@ -8,7 +8,7 @@ class SaveSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
 
     class Meta:
-        model = Save()
+        model = Save
         fields = [
             'id', 'created_on', 'owner', 'walk_post']
 

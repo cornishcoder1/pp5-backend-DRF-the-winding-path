@@ -25,4 +25,5 @@ urlpatterns = [
     path('', include('comments_gallery.urls')),
     path('', include('comments_walk.urls')),
     path('', include('likes.urls')),
+    path('', include('save.urls')),
 ]
