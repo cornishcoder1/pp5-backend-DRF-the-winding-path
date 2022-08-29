@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Post
+from save.models import Save
 
 
 class PostSerializer(serializers.ModelSerializer):
@@ -8,6 +9,7 @@ class PostSerializer(serializers.ModelSerializer):
     is_owner = serializers.SerializerMethodField()
     profile_id = serializers.ReadOnlyField(source='owner.profile.id')
     profile_image = serializers.ReadOnlyField(source='owner.profile.image.url')
+    save_id = serializers.SerializerMethodField()
 
     def validate_image(self, value):
         "Check values for size, width and height on post images"
@@ -30,6 +32,16 @@ class PostSerializer(serializers.ModelSerializer):
         request = self.context['request']
         return request.user == obj.owner
 
+    def get_save_id(self, obj):
+        """Method to return saves count for individual user"""
+        user = self.context['request'].user
+        if user.is_authenticated:
+            saved = Save.objects.filter(
+                owner=user, walk_post=obj
+            ).first()
+            return saved.id if saved else None
+        return None
+
     class Meta:
         """Meta class to to specify model and fields"""
         model = Post
@@ -51,4 +63,5 @@ class PostSerializer(serializers.ModelSerializer):
             'length',
             'duration',
             'content',
+            'save_id',
         ]
