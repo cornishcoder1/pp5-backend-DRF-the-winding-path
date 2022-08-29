@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Gallery
+from gallery.models import Gallery
 from likes.models import Like
 
 

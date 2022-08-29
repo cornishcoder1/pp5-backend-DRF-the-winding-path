@@ -2,7 +2,8 @@
 # from rest_framework import status, permissions
 # from rest_framework.views import APIView
 # from rest_framework.response import Response
-from rest_framework import generics, permissions
+# from django.db.models import Count
+from rest_framework import generics, permissions, filters
 from drf_api.permissions import IsOwnerOrReadOnly
 from .models import Gallery
 from .serializers import GallerySerializer
@@ -96,3 +97,4 @@ class GalleryPostDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = GallerySerializer
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Gallery.objects.all()
+
