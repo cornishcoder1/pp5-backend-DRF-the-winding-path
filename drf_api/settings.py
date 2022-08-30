@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'location_field.apps.DefaultConfig',
     'rest_framework',
+    'django_filters',
 
     'profiles',
     'gallery',
