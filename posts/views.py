@@ -2,7 +2,8 @@
 # from rest_framework import status, permissions
 # from rest_framework.views import APIView
 # from rest_framework.response import Response
-from rest_framework import generics, permissions
+from django.db.models import Count
+from rest_framework import generics, permissions, filters
 from drf_api.permissions import IsOwnerOrReadOnly
 from .models import Post
 from .serializers import PostSerializer
@@ -41,7 +42,18 @@ class WalkPostsList(generics.ListCreateAPIView):
     """List walk posts or create walk post if logged in"""
     serializer_class = PostSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    queryset = Post.objects.all()
+    queryset = Post.objects.annotate(
+        walk_save_count=Count('saved', distinct=True),
+        walk_comments_count=Count('walkcomment', distinct=True)
+    ).order_by('-created_on')
+    filter_backends = [
+        filters.OrderingFilter,
+    ]
+    ordering_fields = [
+        'walk_save_count',
+        'walk_comments_count',
+        'walked_saved__created_on',
+    ]
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
@@ -95,6 +107,9 @@ class WalkPostDetail(generics.RetrieveUpdateDestroyAPIView):
     """Allows walk post owner to retrieve, update or delete their own post"""
     serializer_class = PostSerializer
     permission_classes = [IsOwnerOrReadOnly]
-    queryset = Post.objects.all()
+    queryset = Post.objects.annotate(
+        walk_save_count=Count('saved', distinct=True),
+        walk_comments_count=Count('walkcomment', distinct=True)
+    ).order_by('-created_on')
 
 

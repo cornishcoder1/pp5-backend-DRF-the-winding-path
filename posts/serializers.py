@@ -10,6 +10,8 @@ class PostSerializer(serializers.ModelSerializer):
     profile_id = serializers.ReadOnlyField(source='owner.profile.id')
     profile_image = serializers.ReadOnlyField(source='owner.profile.image.url')
     save_id = serializers.SerializerMethodField()
+    walk_save_count = serializers.ReadOnlyField()
+    walk_comments_count = serializers.ReadOnlyField()
 
     def validate_image(self, value):
         "Check values for size, width and height on post images"
@@ -64,4 +66,6 @@ class PostSerializer(serializers.ModelSerializer):
             'duration',
             'content',
             'save_id',
+            'walk_save_count',
+            'walk_comments_count',
         ]
