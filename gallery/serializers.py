@@ -10,6 +10,8 @@ class GallerySerializer(serializers.ModelSerializer):
     profile_id = serializers.ReadOnlyField(source='owner.profile.id')
     profile_image = serializers.ReadOnlyField(source='owner.profile.image.url')
     like_id = serializers.SerializerMethodField()
+    gallery_likes_count = serializers.ReadOnlyField()
+    gallery_comments_count = serializers.ReadOnlyField()
 
     def validate_image(self, value):
         "Check values for size, width and height on gallery images"
@@ -58,4 +60,6 @@ class GallerySerializer(serializers.ModelSerializer):
             'content',
             'image',
             'like_id',
+            'gallery_likes_count',
+            'gallery_comments_count',
         ]

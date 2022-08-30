@@ -3,6 +3,7 @@
 # from rest_framework.views import APIView
 # from rest_framework.response import Response
 # from django.db.models import Count
+from django.db.models import Count
 from rest_framework import generics, permissions, filters
 from drf_api.permissions import IsOwnerOrReadOnly
 from .models import Gallery
@@ -42,7 +43,18 @@ class GalleryPostsList(generics.ListCreateAPIView):
     """List gallery posts or create gallery post if logged in"""
     serializer_class = GallerySerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    queryset = Gallery.objects.all()
+    queryset = Gallery.objects.annotate(
+        gallery_likes_count=Count('likes', distinct=True),
+        gallery_comments_count=Count('gallerycomment', distinct=True)
+    ).order_by('-created_on')
+    filter_backends = [
+        filters.OrderingFilter,
+    ]
+    ordering_fields = [
+        'gallery_likes_count',
+        'gallery_comments_count',
+        'gallery_likes__created_on',
+    ]
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
@@ -96,5 +108,8 @@ class GalleryPostDetail(generics.RetrieveUpdateDestroyAPIView):
     """Allows gallery post owner to retrieve, update or delete their own post"""
     serializer_class = GallerySerializer
     permission_classes = [IsOwnerOrReadOnly]
-    queryset = Gallery.objects.all()
+    queryset = Gallery.objects.annotate(
+        gallery_likes_count=Count('likes', distinct=True),
+        gallery_comments_count=Count('gallerycomment', distinct=True)
+    ).order_by('-created_on')
 
