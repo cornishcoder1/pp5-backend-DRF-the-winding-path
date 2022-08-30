@@ -48,6 +48,13 @@ class WalkPostsList(generics.ListCreateAPIView):
     ).order_by('-created_on')
     filter_backends = [
         filters.OrderingFilter,
+        filters.SearchFilter
+    ]
+    search_fields = [
+        'owner__username',
+        'title',
+        'environment',
+        'difficulty',
     ]
     ordering_fields = [
         'walk_save_count',
