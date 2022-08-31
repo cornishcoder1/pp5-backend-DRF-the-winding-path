@@ -14,4 +14,4 @@ class Contact(models.Model):
         ordering = ['-created_on']
 
     def __str__(self):
-        return f'{self.content}'
+        return f'{self.fname} {self.lname}'
