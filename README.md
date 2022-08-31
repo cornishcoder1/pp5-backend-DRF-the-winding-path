@@ -4,9 +4,19 @@
 
 # Introduction
 
+The Winding Path is a community site for lovers of walking and the great outdoors. Users can share information about their favourite walks, post photos or artwork that they have created and interact with other users via walk posts, gallery posts, comments and follows. 
+
+This repository holds the Django Rest Framework (DRF) API database for the ReactJS frontend part of the project. 
+
+[Deployed DRF API (via Heroku)](https://the-winding-path-drf-api.herokuapp.com/)
+
+[Deployed Frontend](link here)
+
 ***
 
 # Database Schema - Entity Relationship Diagram
+
+![Entity Relationship Diagram](static/readme_images/pp5_erd.png)
 
 ***
 
@@ -36,28 +46,40 @@ This error was showing because the env.py file was not saved in the top director
 
 ## Modules
 
+![Modules used](static/readme_images/modules_used.png)
+
 ## Languages
 - Python - The base language of the Django REST Framework
 
 ## Libraries
 - Django Cloudinary Storage
 - Pillow (image processing capabilities)
+- Django Rest Auth
+- PostgreSQL
+- Cors Headers
 
 ## Frameworks
 - Django REST Framework
 
 ## Platforms
+- Cloudinary - Storage of image files
+- Github - Repository with Git version control
+- GitPod - IDE used for development
+- Heroku - Platform for DRF
 
 ## Services 
 
+- [DrawSQLapp](https://drawsql.app/) - Development of database schema
+
 ## Resources
+- The Code Institute's DRF walkthrough was used as a guide on how to set up, build and deploy a DRF API. I customised existing models and created new ones as my confidence and knowledge grew. 
+- The Code Institute DRF Cheat Sheet was used as a reference guide, particularly for specific terminal commands.
+- Django Rest Framework documentation was relied on for additional functionality.
+- W3C Schools and Stack Overflow were used for general enquiries relating to Django Rest Framework. 
 
 ***
 
-# Deployment
-(process for API)
-
-## Project Setup
+# Project Setup
 
 1. Create a new repository from the Code Institute template repository.
 2. Run terminal command **pip3 install 'django<4'** to install Django.
@@ -95,6 +117,13 @@ CLOUDINARY_STORAGE = {
 MEDIA_URL = '/media/'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 ```
+
+***
+
+# Deployment
+(process for API)
+
+
 ***
 
 # References
