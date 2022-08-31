@@ -11,7 +11,7 @@ class GalleryCommentList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = GalleryComment.objects.all()
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['gallery']
+    filterset_fields = ['gallery_post']
 
     def perform_create(self, serializer):
         """method to create comment"""

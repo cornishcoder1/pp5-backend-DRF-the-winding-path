@@ -11,7 +11,7 @@ class WalkCommentList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = WalkComment.objects.all()
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['post']
+    filterset_fields = ['walk_post']
 
     def perform_create(self, serializer):
         """method to create comment"""
