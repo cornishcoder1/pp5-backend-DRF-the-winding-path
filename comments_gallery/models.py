@@ -18,4 +18,4 @@ class GalleryComment(models.Model):
         ordering = ['-created_on']
 
     def __str__(self):
-        return self.content
+        return f'{self.content}'
