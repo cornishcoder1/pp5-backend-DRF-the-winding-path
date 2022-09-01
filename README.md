@@ -121,7 +121,117 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 ***
 
 # Deployment
-(process for API)
+
+## Set up JSON Web Tokens (steps 1-17)
+
+1. Firstly, to install JSON Web Token authentication run terminal command **pip install dj-rest-auth**
+
+2. Add 'rest_framework.authtoken' and 'dj_rest_auth' to the list of INSTALLED_APPS in settings.py as below:
+```
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'cloudinary_storage',
+    'django.contrib.staticfiles',
+    'cloudinary',
+    'location_field.apps.DefaultConfig',
+    'rest_framework',
+    'django_filters',
+    'rest_framework.authtoken',
+    'dj_rest_auth',
+```
+
+3. Add the dj-rest-auth urls paths to the main urls.py file as below: 
+```
+urlpatterns = [
+    path('', root_route),
+    path('admin/', admin.site.urls),
+    path('api-auth/', include('rest_framework.urls')),
+    path('dj-rest-auth/', include('dj_rest_auth.urls')),
+```
+
+4. Migrate the database with terminal command **python manage.py migrate**
+
+5. For users to be able to register, install Django AllAuth with terminal command **pip install 'dj-rest-auth[with_social]'**
+
+6. Add the following INSTALLED_APPS to settings.py:
+```
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'dj_rest_auth.registration',
+```
+7. Set SITE_ID in settings.py to 1: 
+```
+SITE_ID = 1
+```
+
+8. Add the registration urls below to the main urls.py file: 
+```
+    path(
+        'dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')
+    ),
+```
+
+9. To install the JSON tokens, run terminal command **pip install djangoframework-simplejwt**
+
+10. Set [DEV] to 1 in the env.py file:
+```
+os.environ['DEV'] = '1'
+```
+
+11. This value can be used to check if project is in development or production. Add the following if/else statement to settings.py: 
+```
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [(
+        'rest_framework.authentication.SessionAuthentication'
+        if 'DEV' in os.environ
+        else 'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
+    )],
+```
+
+12. To enable token authentication, set REST_USE_JWT to True. To ensure tokens are sent over HTTPS only, set JWT_AUTH_SECURE to True. Cookie names must also be declared. To do all of this, add the following code below the if/else statement just added to settings.py: 
+```
+REST_USE_JWT = True
+JWT_AUTH_SECURE = True
+JWT_AUTH_COOKIE = 'my-app-auth'
+JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
+```
+
+13. Create serializers.py file in main directory, and copy UserDetailsSerializer code from Django documentation as follows:
+```
+from dj_rest_auth.serializers import UserDetailsSerializer
+from rest_framework import serializers
+
+
+class CurrentUserSerializer(UserDetailsSerializer):
+    """Serializer for Current User"""
+    profile_id = serializers.ReadOnlyField(source='profile.id')
+    profile_image = serializers.ReadOnlyField(source='profile.image.url')
+
+    class Meta(UserDetailsSerializer.Meta):
+        """Meta class to to specify fields"""
+        fields = UserDetailsSerializer.Meta.fields + (
+            'profile_id', 'profile_image'
+        )
+``` 
+
+14. Overwrite the default user detail serializer in settings.py with the following:
+```
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'drf_api.serializers.CurrentUserSerializer'
+}
+```
+
+15. Migrate the database again with terminal command **python manage.py migrate**
+
+16. Update requirements.txt file with new dependencies by running terminal command **pip freeze > requirements.txt**
+
+17. Add, commit and push changes. 
 
 
 ***
