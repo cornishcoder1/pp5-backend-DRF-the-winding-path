@@ -202,7 +202,7 @@ JWT_AUTH_COOKIE = 'my-app-auth'
 JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
 ```
 
-13. Create serializers.py file in main directory, and copy UserDetailsSerializer code from Django documentation as follows:
+13. Create serializers.py file in the drf_api directory, and copy UserDetailsSerializer code from Django documentation as follows:
 ```
 from dj_rest_auth.serializers import UserDetailsSerializer
 from rest_framework import serializers
@@ -233,8 +233,124 @@ REST_AUTH_SERIALIZERS = {
 
 17. Add, commit and push changes. 
 
+## Prepare API for deployment to Heroku (steps 18-24)
 
+18. To add a custom message to the root_route, create a views.py file in the drf_api directory and add the following code:
+
+```
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
+@api_view()
+def root_route(request):
+    return Response({
+        "message": "Welcome to The Winding Path drf API!"
+    })
+```
+
+19. Import to the main urls.py file, and add to the top of the urlpatterns list as follows: 
+
+```
+from .views import root_route
+
+urlpatterns = [
+    path('', root_route),
+
+```
+
+20. To set up page pagination, add the following to settings.py (inside REST_FRAMEWORK):
+```
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [(
+        'rest_framework.authentication.SessionAuthentication'
+        if 'DEV' in os.environ
+        else 'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
+    )],
+    'DEFAULT_PAGINATION_CLASS':
+    'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+}
+```
+
+21. Set the default renderer to JSON for the production environment in settings.py:
+```
+if 'DEV' not in os.environ:
+    REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = [
+        'rest_framework.renderers.JSONRenderer',
+    ]
+```
+
+22. To set up DATETIME_FORMAT, add the following to settings.py (inside REST_FRAMEWORK, under DEFAULT_PAGINATION_CLASS):
+```
+'DATETIME_FORMAT': '%d %b %y',
+```
+
+23. For comments, set DATETIME format to show how long ago a comment was created and updated. To do this, add the following code to any serializers.py files within comment apps: 
+
+```
+from django.contrib.humanize.templatetags.humanize import naturaltime
+
+created_on = serializers.SerializerMethodField()
+updated_on = serializers.SerializerMethodField()
+
+    def get_created_on(self, obj):
+        """Method to display when comment was posted"""
+        return naturaltime(obj.created_on)
+
+    def get_updated_on(self, obj):
+        """Method to display when comment was updated"""
+        return naturaltime(obj.updated_on)
+
+```
+
+24. Add, commit and push changes 
+
+## Deploy to Heroku (steps 25 - )
+
+25. Log into Heroku and create a new app. 
+
+26. Go to 'Resources' to search for Heroku Postgres in the Add-Ons section, and select the free plan.
+
+27. Go to 'Settings' and click on 'Reveal Config Vars' to confirm DATABASE_URL is present. 
+
+28. Go back to Git workspace and run terminal command **pip install dj_database_url psycopg2** to install the relevant libraries needed to use a Heroku postgres database. 
+
+29. Import dj_database_url to settings.py:
+```
+import dj_database_url
+```
+
+30. Go to DATABASES in settings.py and separate development and production environments: 
+```
+DATABASES = {
+    'default': ({
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    } if 'DEV' in os.environ else dj_database_url.parse(
+        os.environ.get('DATABASE_URL')
+    ))
+}
+```
+
+31. Install Gunicorn library by running terminal command **pip install gunicorn**
+
+32. Add a Procfile to the top level of the directory and add the following code to the file: 
+```
+release: python manage.py makemigrations && python manage.py migrate
+web: gunicorn drf_api.wsgi
+```
+
+33. Set ALLOWED_HOSTS in settings.py: 
+```
+ALLOWED_HOSTS = [
+    os.environ.get('ALLOWED_HOST'),
+    'localhost',
+]
+```
+
+ 
 ***
+
 
 # References
 
