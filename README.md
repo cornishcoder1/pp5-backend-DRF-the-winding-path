@@ -1,5 +1,30 @@
 # Table of Contents
 
+## Table of contents
+1. [Introduction](#introduction)
+2. [Database Scheme](#database-schema---entity-relationship-diagram)
+3. [Testing](#testing)
+4. [Bugs](#bugs)
+    1. [Fixed](#fixed)
+    2. [Unfixed](#unfixed)
+5. [Technologies Used](#technologies-used)
+     1. [Modules](#modules-used-for-the-development-of-this-project)
+     2. [Languages](#languages)
+     3. [Libraries](#libraries)
+     4. [Frameworks](#frameworks)
+     5. [Platforms](#platforms)
+     6. [Services](#services)
+     7. [Resources](#resources)
+6. [Project Setup](#projectsetup)
+7. [Deployment](#deployment)
+    1. [Set up JSON web tokens](#set-up-json-web-tokens-steps-1-17)
+    2. [Prepare API for deployment to Heroku](#prepare-api-for-deployment-to-heroku-steps-18-24)
+    3. [Deploy to Heroku](#deploy-to-heroku-steps-25---50)
+    4. [dj-rest-auth Bug Fix](#dj-rest-auth-bug-fix-steps-51-54)
+    5. [Adding extra required environment variables](#adding-extra-required-environment-variables---required-to-use-api-with-frontend-part-of-project-steps-55-62)
+8. [Credits](#credits)
+9. [Media](#media)
+
 ***
 
 # Introduction
