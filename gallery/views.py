@@ -106,7 +106,8 @@ class GalleryPostsList(generics.ListCreateAPIView):
 #         if serializer.is_valid():
 #             serializer.save()
 #             return Response(serializer.data)
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+#         return Response(serializer.errors,
+#         status=status.HTTP_400_BAD_REQUEST)
 
 #     def delete(self, request, pk):
 #         """Delete method to delete a Gallery Post instance"""
@@ -117,11 +118,12 @@ class GalleryPostsList(generics.ListCreateAPIView):
 #         )
 
 class GalleryPostDetail(generics.RetrieveUpdateDestroyAPIView):
-    """Allows gallery post owner to retrieve, update or delete their own post"""
+    """
+    Allows gallery post owner to retrieve, update or delete their own post
+    """
     serializer_class = GallerySerializer
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Gallery.objects.annotate(
         gallery_likes_count=Count('likes', distinct=True),
         gallery_comments_count=Count('gallerycomment', distinct=True)
     ).order_by('-created_on')
-

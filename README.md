@@ -21,8 +21,7 @@ This repository holds the Django Rest Framework (DRF) API database for the React
 ***
 
 # Testing
-(link to separate tests.md file)
-Implement manual testing and document the procedures and results. 
+- All testing documentation can be found [here](/TESTS.md)
 
 ***
 

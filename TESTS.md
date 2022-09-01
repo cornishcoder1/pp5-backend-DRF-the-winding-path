@@ -41,3 +41,7 @@ Result:
 Result:
 
 ![Unit Tests results](static/screenshots_tests/walk_post_detail_view_unit_test_results.png)
+
+***
+
+# Validator Testing

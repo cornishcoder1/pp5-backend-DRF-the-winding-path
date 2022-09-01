@@ -107,7 +107,8 @@ class WalkPostsList(generics.ListCreateAPIView):
 #         if serializer.is_valid():
 #             serializer.save()
 #             return Response(serializer.data)
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+#         return Response(serializer.errors,
+#         status=status.HTTP_400_BAD_REQUEST)
 
 #     def delete(self, request, pk):
 #         """Delete method to delete a Walk Post instance"""
@@ -125,5 +126,3 @@ class WalkPostDetail(generics.RetrieveUpdateDestroyAPIView):
         walk_save_count=Count('saved', distinct=True),
         walk_comments_count=Count('walkcomment', distinct=True)
     ).order_by('-created_on')
-
-

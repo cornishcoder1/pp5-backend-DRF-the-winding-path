@@ -23,4 +23,3 @@ class WalkCommentDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = WalkCommentDetailSerializer
     queryset = WalkComment.objects.all()
-

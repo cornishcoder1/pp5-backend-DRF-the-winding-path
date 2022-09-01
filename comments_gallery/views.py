@@ -2,7 +2,8 @@ from rest_framework import generics, permissions
 from django_filters.rest_framework import DjangoFilterBackend
 from drf_api.permissions import IsOwnerOrReadOnly
 from .models import GalleryComment
-from .serializers import GalleryCommentSerializer, GalleryCommentDetailSerializer
+from .serializers import GalleryCommentSerializer
+from .serializers import GalleryCommentDetailSerializer
 
 
 class GalleryCommentList(generics.ListCreateAPIView):

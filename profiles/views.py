@@ -53,7 +53,9 @@ class ProfileList(generics.ListAPIView):
 #     permission_classes = [IsOwnerOrReadOnly]
 
 #     def get_object(self, pk):
-#         """Method to handle requests made for a profile which does not exist"""
+#         """
+#         Method to handle requests made for a profile which does not exist
+#         """
 #         try:
 #             profile = Profile.objects.get(pk=pk)
 #             self.check_object_permissions(self.request, profile)
@@ -70,11 +72,13 @@ class ProfileList(generics.ListAPIView):
 #     def put(self, request, pk):
 #         """Put method to update a Profile instance"""
 #         profile = self.get_object(pk)
-#         serializer = ProfileSerializer(profile, data=request.data, context={'request': request})
+#         serializer = ProfileSerializer(profile, data=request.data,
+#         context={'request': request})
 #         if serializer.is_valid():
 #             serializer.save()
 #             return Response(serializer.data)
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+#         return Response(serializer.errors,
+#         status=status.HTTP_400_BAD_REQUEST)
 
 class ProfileDetail(generics.RetrieveUpdateAPIView):
     """Allows profile owner to retrieve and update their own profile"""

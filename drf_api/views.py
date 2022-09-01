@@ -12,6 +12,7 @@ def root_route(request):
         "message": "Welcome to The Winding Path drf API!"
     })
 
+
 # dj-rest-auth logout view fix
 @api_view(['POST'])
 def logout_route(request):
@@ -36,3 +37,4 @@ def logout_route(request):
         secure=JWT_AUTH_SECURE,
     )
     return response
+
