@@ -45,3 +45,6 @@ Result:
 ***
 
 # Validator Testing
+
+All python files passed through the PEP8 validator with no issues, apart from some long-line errors which were rectifed. One long-line error remains in settings.py (line 178): 
+![Validator Test results for settings.py](static/screenshots_tests/validator_testing_settings.png)
