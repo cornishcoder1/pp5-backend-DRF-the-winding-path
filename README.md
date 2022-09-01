@@ -14,11 +14,11 @@
      5. [Platforms](#platforms)
      6. [Services](#services)
      7. [Resources](#resources)
-6. [Project Setup](#projectsetup)
+6. [Project Setup](#project-setup)
 7. [Deployment](#deployment)
     1. [Set up JSON web tokens](#set-up-json-web-tokens-steps-1-17)
     2. [Prepare API for deployment to Heroku](#prepare-api-for-deployment-to-heroku-steps-18-24)
-    3. [Deploy to Heroku](#deploy-to-heroku-steps-25---50)
+    3. [Deploy to Heroku](#deploy-to-heroku-steps-25-50)
     4. [dj-rest-auth Bug Fix](#dj-rest-auth-bug-fix-steps-51-54)
     5. [Adding extra required environment variables](#adding-extra-required-environment-variables---required-to-use-api-with-frontend-part-of-project-steps-55-62)
 8. [Credits](#credits)
@@ -328,7 +328,7 @@ updated_on = serializers.SerializerMethodField()
 
 24. Add, commit and push changes 
 
-## Deploy to Heroku (steps 25 - 50 )
+## Deploy to Heroku (steps 25-50 )
 
 25. Log into Heroku and create a new app. 
 
