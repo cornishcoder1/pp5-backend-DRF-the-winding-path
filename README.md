@@ -34,10 +34,10 @@ This error was showing because the env.py file was not saved in the top director
 
 - When attempting to render the Comment List views for Gallery and Walk posts I encountered the following error: " 'Meta.fields' must not contain non-model fieldnames". This error was showing as I had given the filterset_fields lists in each comment model the wrong value. I corrected the values to 'walk_post' and 'gallery_post', where they had previously been 'post' and 'gallery'. 
 
-   
-
 
 ## Unfixed
+
+None identified
 
 ***
 
@@ -517,11 +517,18 @@ if 'CLIENT_ORIGIN_DEV' in os.environ:
  
 ***
 
+# Credits
 
-# References
+- The Code Institute DRF-API walkthrough was used as an invaluable guide on how to build a DRF-API. 
+- Ger, John and Alex at Tutor Support for their assistance. 
+- Fellow student Lauren-Nicole for peer support and chats. 
+- Slack Community for an invaluable archive of help! 
+- [Countryfile.com](https://www.countryfile.com/go-outdoors/walks/best-hikes-in-england/) for walk post model field inspiration. 
 
 ***
 
-# Credits
+# Media 
+
+- Default post image and default profile image are taken from Code Institute DRF walkthrough project. 
 
 
