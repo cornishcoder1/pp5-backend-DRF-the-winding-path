@@ -305,7 +305,7 @@ updated_on = serializers.SerializerMethodField()
 
 24. Add, commit and push changes 
 
-## Deploy to Heroku (steps 25 - )
+## Deploy to Heroku (steps 25 - 50 )
 
 25. Log into Heroku and create a new app. 
 
@@ -347,7 +347,130 @@ ALLOWED_HOSTS = [
     'localhost',
 ]
 ```
+34. Install Cors Headers library by running terminal command **pip install django-cors-headers**
 
+35. Add 'corsheaders' to INSTALLED_APPS list in settings.py (underneath 'dj_rest_auth.registration')
+
+36. Add to the top of the MIDDLEWARE list in settings.py as follows: 
+```
+MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+```
+
+37. Set allowed origins for network requests in settings.py:
+```
+if 'CLIENT_ORIGIN' in os.environ:
+     CORS_ALLOWED_ORIGINS = [
+         os.environ.get('CLIENT_ORIGIN'),
+         os.environ.get('CLIENT_ORIGIN_DEV')
+    ]
+
+else:
+    CORS_ALLOWED_ORIGIN_REGEXES = [
+         r"^https://.*\.gitpod\.io$",
+    ]
+
+CORS_ALLOW_CREDENTIALS = True
+```
+
+38. Set JWT_AUTH_SAMESITE to 'None' in settings py as follows:
+```
+REST_USE_JWT = True
+JWT_AUTH_SECURE = True
+JWT_AUTH_COOKIE = 'my-app-auth'
+JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
+JWT_AUTH_SAMESITE = 'None'
+```
+
+39. In env.py, set SECRET_KEY value to a random value: 
+```
+os.environ['SECRET_KEY'] = 'random value here'
+```
+
+40. In settings.py, replace the default SECRET_KEY variable as follows:
+```
+SECRET_KEY = os.environ.get('SECRET_KEY')
+```
+
+41. In settings.py, set DEBUG as follows:
+```
+DEBUG = 'DEV' in os.environ
+```
+
+42. Copy the CLOUDINARY_URL and SECRET_KEY values from env.py and add them to Heroku config vars. 
+
+43. Add config var COLLECT_STATIC and set to 1. 
+
+44. Update requirements.txt file with new dependencies by running terminal command **pip freeze > requirements.txt**
+
+45. Add, commit and push changes.
+
+46. Go back to Heroku and click on 'Deploy'. Go to 'Deployment Method' and click on GitHub. 
+
+47. Connect to the DRF repository. 
+
+48. In 'Manual Deploy' select Main branch and click 'Deploy Branch'. 
+
+49. Monitor build log and deployment blog to ensure no error messages display. If build is successful, the app is now deployed. 
+
+50. Click on 'Open app' to access deployed app.
+
+## dj-rest-auth bug fix (steps 51-)
+
+dj-test-auth currently has a bug that does not allow users to log out. To fix this, follow these steps: 
+
+51. In the drf_api views.py file, imort JWT_AUTH settings from settings.py:
+```
+from .settings import (
+    JWT_AUTH_COOKIE, JWT_AUTH_REFRESH_COOKIE, JWT_AUTH_SAMESITE,
+    JWT_AUTH_SECURE,
+)
+```
+then, add the following log out view code: 
+```
+@api_view(['POST'])
+def logout_route(request):
+    """dj-rest-auth-logout-view-fix"""
+    response = Response()
+    response.set_cookie(
+        key=JWT_AUTH_COOKIE,
+        value='',
+        httponly=True,
+        expires='Thu, 01 Jan 1970 00:00:00 GMT',
+        max_age=0,
+        samesite=JWT_AUTH_SAMESITE,
+        secure=JWT_AUTH_SECURE,
+    )
+    response.set_cookie(
+        key=JWT_AUTH_REFRESH_COOKIE,
+        value='',
+        httponly=True,
+        expires='Thu, 01 Jan 1970 00:00:00 GMT',
+        max_age=0,
+        samesite=JWT_AUTH_SAMESITE,
+        secure=JWT_AUTH_SECURE,
+    )
+    return response
+
+```
+
+52. In the main urls.py file, import the logout_route:
+```
+from .views import root_route, logout_route
+```
+then, add to the urlpatterns list. The logout_route must be placed above the dafault dj-rest-urls, as follows: 
+```
+    path('dj-rest-auth/logout/', logout_route),
+    path('dj-rest-auth/', include('dj_rest_auth.urls')),
+```
  
 ***
 
