@@ -1,8 +1,7 @@
 # Table of Contents
 
-## Table of contents
 1. [Introduction](#introduction)
-2. [Database Scheme](#database-schema---entity-relationship-diagram)
+2. [Database Schema](#database-schema---entity-relationship-diagram)
 3. [Testing](#testing)
 4. [Bugs](#bugs)
     1. [Fixed](#fixed)
