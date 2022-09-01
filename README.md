@@ -423,7 +423,7 @@ DEBUG = 'DEV' in os.environ
 
 50. Click on 'Open app' to access deployed app.
 
-## dj-rest-auth bug fix (steps 51-)
+## dj-rest-auth bug fix (steps 51-54)
 
 dj-test-auth currently has a bug that does not allow users to log out. To fix this, follow these steps: 
 
@@ -471,6 +471,50 @@ then, add to the urlpatterns list. The logout_route must be placed above the daf
     path('dj-rest-auth/logout/', logout_route),
     path('dj-rest-auth/', include('dj_rest_auth.urls')),
 ```
+
+53. Add, commit and push changes. 
+
+54. Return to Heroku and manually deploy again. 
+
+## Adding extra required environment variables - required to use API with Frontend part of project (steps 55-62)
+
+55. In settings.py, add heroku app url to ALLOWED_HOSTS: 
+```
+ALLOWED_HOSTS = [
+    '....herokuapp.com'
+    'localhost',
+]
+```
+
+56. Go to Heroku deployed app, and go to 'Settings' then 'Reveal config vars'. 
+
+57. Add the new ALLOWED_HOST key with the value of your deployed URL (as added to ALLOWED_HOSTS).
+
+58. Go back to settings.py and replace the url string with the ALLOWED_HOST environment variable"
+```
+ALLOWED_HOSTS = [
+    os.environ.get('ALLOWED_HOST'),
+    'localhost',
+]
+```
+
+59. In order to make application more secure by changing the workspace url regularly, import the regular expression module at the top of settings.py"
+```
+import re
+```
+
+60. Replace the if/else statement for CLIENT_ORIGIN with the following:
+```
+if 'CLIENT_ORIGIN_DEV' in os.environ:
+    extracted_url = re.match(r'^.+-', os.environ.get('CLIENT_ORIGIN_DEV', ''), re.IGNORECASE).group(0)
+    CORS_ALLOWED_ORIGIN_REGEXES = [
+        rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
+    ]
+```
+
+61. Add, commit and push changes. 
+
+62. Return to Heroku and manually deploy branch for a final time. 
  
 ***
 
