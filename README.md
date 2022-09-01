@@ -7,7 +7,7 @@
     1. [Fixed](#fixed)
     2. [Unfixed](#unfixed)
 5. [Technologies Used](#technologies-used)
-     1. [Modules](#modules-used-for-the-development-of-this-project)
+     1. [Modules](#modules)
      2. [Languages](#languages)
      3. [Libraries](#libraries)
      4. [Frameworks](#frameworks)
@@ -106,7 +106,7 @@ None identified
 
 1. Create a new repository from the Code Institute template repository.
 2. Run terminal command **pip3 install 'django<4'** to install Django.
-3. Run terminal command **django-admin startproject pp5_drf_api .** (pp5-drf-ap is the name of my api - make to include the dot at the end to initialize project in it's current directory).
+3. Run terminal command **django-admin startproject pp5_drf_api .** (pp5-drf-ap is the name of my api - make sure to include the dot at the end to initialize project in it's current directory).
 4. Run terminal command **pip install django-cloudinary-storage** to install Django Cloudinary Storage.
 5. Run terminal command **pip install Pillow** to install Pillow image processing capabilities (note the uppercase 'P').
 6. Add the newly installed apps 'cloudinary_storage' and 'cloudinary' to INSTALLED_APPS in settings.py as shown below:
