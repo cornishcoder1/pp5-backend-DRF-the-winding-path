@@ -1,10 +1,15 @@
 ## Table of contents
 1. [Unit Testing](#unit-testing)
-    - [Views](#views) 
-    - [Forms](#forms)
-- [Validator Testing](#validator-testing)
-    - [PEP8](#pep8)
-- [Manual Testing](#responsive-testing)
+    1. [Gallery Post List View](#gallery-post-list-view)
+    2. [Gallery Post Detail View](#gallery-post-detail-view) 
+    3. [Walk Post List View](#walk-post-list-view)
+    4. [Walk Post Detail View](#walk-post-detail-view)
+2. [Validator Testing](#validator-testing)
+3. [Manual Testing](#manual-testing)
+    1. [URL Testing](#url-testing)
+    2. [CRUD Testing](#crud-testing)
+    3. [Search Functionality Testing](#search-functionality-testing)
+
 ***
 
 # Unit Testing
@@ -57,7 +62,7 @@ All python files passed through the PEP8 validator with no issues, apart from so
 All urls were tested (development and deployed) and all worked as expected. 
 ![URL testing](static/screenshots_tests/url_testing.png)
 
-## Crud testing
+## CRUD testing
 All apps were tested to ensure appropriate CRUD functionality was present in the development version of DRF.
 ![CRUD testing](static/screenshots_tests/crud_testing.png)
 
