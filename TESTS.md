@@ -60,3 +60,8 @@ All urls were tested (development and deployed) and all worked as expected.
 ## Crud testing
 All apps were tested to ensure appropriate CRUD functionality was present in the development version of DRF.
 ![CRUD testing](static/screenshots_tests/crud_testing.png)
+
+## Search Functionality testing
+Search functionality was tested on Walk Posts and Gallery Posts, to ensure correct results were returned when searching by the relevant search fields for each app. 
+![Search testing](static/screenshots_tests/search_testing.png)
+
