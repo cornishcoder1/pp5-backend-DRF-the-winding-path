@@ -48,3 +48,15 @@ Result:
 
 All python files passed through the PEP8 validator with no issues, apart from some long-line errors which were rectifed. One long-line error remains in settings.py (line 178): 
 ![Validator Test results for settings.py](static/screenshots_tests/validator_testing_settings.png)
+
+***
+
+# Manual Testing
+
+## URL testing 
+All urls were tested (development and deployed) and all worked as expected. 
+![URL testing](static/screenshots_tests/url_testing.png)
+
+## Crud testing
+All apps were tested to ensure appropriate CRUD functionality was present in the development version of DRF.
+![CRUD testing](static/screenshots_tests/crud_testing.png)
