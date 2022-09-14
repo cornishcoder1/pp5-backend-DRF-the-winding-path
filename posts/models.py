@@ -43,22 +43,22 @@ class Post(models.Model):
     environment = models.CharField(
         max_length=55,
         choices=environment_choices,
-        default="information not provided",
+        default='none',
     )
     wc = models.CharField(
         max_length=20,
         choices=wc_choices,
-        default="information not provided",
+        default='none',
     )
     dog_friendly = models.CharField(
         max_length=20,
         choices=dog_friendly,
-        default="information not provided",
+        default='none',
     )
     difficulty = models.CharField(
         max_length=55,
         choices=difficulty,
-        default="information not provided",
+        default='none',
     )
     length = models.CharField(max_length=55)
     duration = models.CharField(max_length=55)
