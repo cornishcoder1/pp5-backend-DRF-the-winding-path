@@ -19,17 +19,21 @@ class Post(models.Model):
     wc_choices = [
         ('yes', 'Yes'),
         ('no', 'No'),
+        ('unknown', 'Unknown'),
+        
     ]
 
     dog_friendly = [
         ('yes', 'Yes'),
         ('no', 'No'),
+        ('unknown', 'Unknown'),
     ]
 
     difficulty = [
         ('easy', 'Easy'),
         ('moderate', 'Moderate'),
-        ('challenging', 'Challenging')
+        ('challenging', 'Challenging'),
+        ('unknown', 'Unknown'),
     ]
 
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
