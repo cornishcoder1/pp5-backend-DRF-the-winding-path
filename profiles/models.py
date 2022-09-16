@@ -10,8 +10,7 @@ class Profile(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     name = models.CharField(max_length=150, blank=True)
-    city = models.CharField(max_length=255, blank=True)
-    location = PlainLocationField(based_fields=['city'], zoom=7)
+    location = models.CharField(max_length=255, blank=True)
     bio = models.TextField(blank=True)
     image = models.ImageField(
         upload_to='images/', default='../default_profile_hkhita'
