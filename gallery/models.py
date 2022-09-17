@@ -14,7 +14,7 @@ class Gallery(models.Model):
     category = models.CharField(
         max_length=55,
         choices=category_choices,
-        default=0
+        default='artwork'
     )
     title = models.CharField(max_length=255)
     content = models.TextField(blank=True)
