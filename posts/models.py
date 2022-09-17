@@ -13,6 +13,7 @@ class Post(models.Model):
         ('hill', 'Hill'),
         ('mountain', 'Mountain'),
         ('peak', 'Peak'),
+        ('city', 'City'),
         ('other', 'Other'),
     ]
 
