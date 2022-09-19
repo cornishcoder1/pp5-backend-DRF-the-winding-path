@@ -34,7 +34,8 @@ This repository holds the Django Rest Framework (DRF) API database for the React
 
 [Deployed DRF API (via Heroku)](https://the-winding-path-drf-api.herokuapp.com/)
 
-[Deployed Frontend](link here)
+[Deployed Front End](https://the-winding-path.herokuapp.com/)
+
 
 ***
 
