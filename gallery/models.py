@@ -24,7 +24,7 @@ class Gallery(models.Model):
 
     class Meta:
         """Order by most recent first"""
-        ordering = ['-created_on']
+        ordering = ['-updated_on']
 
     def __str__(self):
         return f'{self.title}'
