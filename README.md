@@ -32,7 +32,7 @@ The Winding Path is a community site for lovers of walking and the great outdoor
 
 This repository holds the Django Rest Framework (DRF) API database for the ReactJS frontend part of the project. 
 
-[Deployed DRF API (via Heroku)](https://the-winding-path-drf-api.herokuapp.com/)
+[Deployed DRF API (via Render)](https://pp5-backend-drf-the-winding-path.onrender.com/)
 
 [Deployed Front End](https://the-winding-path.herokuapp.com/)
 
