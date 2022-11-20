@@ -21,6 +21,7 @@
     3. [Deploy to Heroku](#deploy-to-heroku-steps-25-50)
     4. [dj-rest-auth Bug Fix](#dj-rest-auth-bug-fix-steps-51-54)
     5. [Adding extra required environment variables](#adding-extra-required-environment-variables---required-to-use-api-with-frontend-part-of-project-steps-55-62)
+    6. [Deployment Update Nov 2022](#deployment-update-nov-2022)
 8. [Credits](#credits)
 9. [Media](#media)
 
@@ -93,7 +94,8 @@ None identified
 - Cloudinary - Storage of image files
 - Github - Repository with Git version control
 - GitPod - IDE used for development
-- Heroku - Platform for DRF
+- Heroku - Hosting of DRF database (until November 2022)
+- ElephantSQL - Hosting of DRF database (from November 2022)
 
 ## Services 
 
@@ -544,6 +546,14 @@ if 'CLIENT_ORIGIN_DEV' in os.environ:
 
 62. Return to Heroku and manually deploy branch for a final time. 
  
+***
+
+# Deployment (Update, Nov 2022)
+
+As of November 2022, Heroku ceased to provide a free service. Therefore, to continuing hosting <a href="https://pp5-backend-drf-the-winding-path.onrender.com/">this project</a> without charge I transferred it to free services <a href="https://render.com/">Render</a> and <a href="https://www.elephantsql.com/">ElephantSQL</a>.
+
+The steps followed to migrate the DRF from Heroku to ElephantSQL can be found <a href="https://code-institute-students.github.io/deployment-docs/41-pp5-adv-fe/pp5-adv-fe-drf-01-create-a-database">here</a>.
+
 ***
 
 # Credits
