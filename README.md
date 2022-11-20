@@ -554,6 +554,8 @@ As of November 2022, Heroku ceased to provide a free service. Therefore, to cont
 
 The steps followed to migrate the DRF from Heroku to ElephantSQL can be found <a href="https://code-institute-students.github.io/deployment-docs/41-pp5-adv-fe/pp5-adv-fe-drf-01-create-a-database">here</a>.
 
+The steps followed to migrate this project (front end) from Heroku to Render can be found <a href="https://code-institute-students.github.io/deployment-docs/41-pp5-adv-fe/pp5-adv-fe-react-01-applying-your-deployed-api">here</a>.
+
 ***
 
 # Credits
